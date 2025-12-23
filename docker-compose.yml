@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel11-app
+    env_file:
+      - .env
+    # environment:
+    #   PORT: 9000
+    #   APP_NAME: Laravel
+    #   APP_ENV: local
+    #   APP_KEY: base64:mKB/atEROA37sUU5S2bIMEbwcr2ohy1IAe2G08epu8g=
+    #   APP_DEBUG: true
+    #   APP_URL: http://localhost
+
+    #   DB_CONNECTION: pgsql
+    #   DB_HOST: 192.168.4.57
+    #   DB_PORT: 5432
+    #   DB_DATABASE: ets_db_master1
+    #   DB_USERNAME: ets_user_master1
+    #   DB_PASSWORD: 2tZxHFizMpxll5
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www/html
+    networks:
+        - ets_network
+        
+  nginx:
+    image: nginx:latest
+    container_name: nginx-laravel
+    ports:
+        - "8082:80"
+    volumes:
+        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - .:/var/www/html
+    depends_on:
+        - app
+    networks:
+        - ets_network
+networks:
+    ets_network:
+        external: true
