@@ -34,24 +34,17 @@ export default function Index({ products, filters }: Props) {
     };
 
     return (
-        <AuthenticatedLayout
-            header={
-                <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                        Products
-                    </h2>
-                    <Link href={route('admin.products.create')}>
-                        <PrimaryButton>Create Product</PrimaryButton>
-                    </Link>
-                </div>
-            }
-        >
+        <AuthenticatedLayout header="Products">
             <Head title="Products" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6">
+            <div className="mb-4 flex items-center justify-between">
+                <Link href={route('admin.products.create')}>
+                    <PrimaryButton>Create Product</PrimaryButton>
+                </Link>
+            </div>
+
+            <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                <div className="p-6">
                             {/* Search and Filters */}
                             <div className="mb-4 flex gap-4">
                                 <form
@@ -208,8 +201,6 @@ export default function Index({ products, filters }: Props) {
                             )}
                         </div>
                     </div>
-                </div>
-            </div>
         </AuthenticatedLayout>
     );
 }

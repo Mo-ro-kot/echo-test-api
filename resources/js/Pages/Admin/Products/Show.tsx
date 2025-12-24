@@ -9,24 +9,17 @@ interface Props {
 
 export default function Show({ product }: Props) {
     return (
-        <AuthenticatedLayout
-            header={
-                <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                        Product Details
-                    </h2>
-                    <Link href={route('admin.products.edit', product.id)}>
-                        <PrimaryButton>Edit Product</PrimaryButton>
-                    </Link>
-                </div>
-            }
-        >
+        <AuthenticatedLayout header="Product Details">
             <Head title="Product Details" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
+            <div className="mb-4 flex items-center justify-end">
+                <Link href={route('admin.products.edit', product.id)}>
+                    <PrimaryButton>Edit Product</PrimaryButton>
+                </Link>
+            </div>
+
+            <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                <div className="p-6 text-gray-900 dark:text-gray-100">
                             <div className="space-y-4">
                                 <div>
                                     <h3 className="text-lg font-semibold">
@@ -102,8 +95,7 @@ export default function Show({ product }: Props) {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                
         </AuthenticatedLayout>
     );
 }
