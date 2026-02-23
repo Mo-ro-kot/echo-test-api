@@ -15,6 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me'])->name('api.me');
 
     // Product routes (protected)
-    Route::apiResource('products', ProductController::class);
+    // Route::apiResource('products', ProductController::class);
 });
 
+Route::get('/products', [ProductController::class, 'index']);
