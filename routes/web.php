@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\SongController as AdminSongController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Admin Product Routes
+    // Admin Routes
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('products', AdminProductController::class);
+        Route::resource('albums', AdminAlbumController::class);
+        Route::resource('songs', AdminSongController::class);
     });
 });
 
